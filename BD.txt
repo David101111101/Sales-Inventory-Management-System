@@ -1,0 +1,51 @@
+use test;
+create table usuarios
+(
+nombre nchar(200) primary key,
+correo nchar(200)not null,
+nomUSU nchar(200)not null,
+passUSU nchar(200)not null,
+identificacion bigint not null,
+ciudad nvarchar(30) not null,
+telefono bigint not null,
+direccion nvarchar (60) not null,
+cargoUSU nchar(60) null,
+estadoUSU nchar(60) not null
+)
+engine = innodb;
+
+
+insert into usuarios values ('jesus emanuel gustin cruz','Gsus_cardenal@hotmail.com','jesus9603','ui','96030400620','bogota',456789321,'asd897 54asd','','ACTIVO');
+INSERT INTO usuarios VALUES ('davi  abril pulecio','ele@asd.sad','david9601','davis',96010509421,'bogota',456789321,'asd897 54asd','ADMINISTRADOR','ACTIVO');
+INSERT INTO usuarios VALUES ('juan','wer@as.e','juan','juan1','ADMINISTRADOR');
+
+SELECT * FROM test.usuarios u;
+
+
+
+SELECT usuarios.nomUSU , correo FROM USUARIOS WHERE nomUSU= ('mauricio950') ;
+SELECT  usuarios.nomUSU , correo , passUSU FROM USUARIOS  WHERE nomUSU='mauricio950';
+
+
+create table pedido_venta
+(
+cod_pedido int  NOT NULL AUTO_INCREMENT,
+fecha_orden nchar(20) not null,
+cantidad_productos bigint not null,
+plazoPago nchar (30) null,
+fecha_despacho nchar(200)  null,
+nombre nchar(200) not null,
+PRIMARY KEY (cod_pedido)
+)
+engine = innodb;
+
+insert into pedido_venta values (1,'20/10/2012',600,'','','jesus emanuel gustin cruz');
+insert into pedido_venta values (null,'29/10/2012',500,'','','cxv');
+insert into pedido_venta values (null,'30/10/2012',800,'','10/11/2012');
+
+SELECT * FROM pedido_venta p;
+
+
+alter table pedido_venta
+add constraint fk_usuario_pedVenta foreign key (nombre)
+references usuarios(nombre);
